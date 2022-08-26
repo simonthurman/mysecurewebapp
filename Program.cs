@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
-using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using System.Security.Claims;
 
 var myConfig = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
@@ -30,6 +30,23 @@ builder.Services.AddControllersWithViews(options =>
 builder.Services.AddRazorPages()
         .AddMicrosoftIdentityUI();
 
+/* ClaimToken myClaim = new ClaimToken();
+
+ClaimsPrincipal principal = HttpContext.User as ClaimsPrincipal;
+if (principal != null)
+{
+    ClaimsIdentity identity = principal.Identity as ClaimsIdentity;
+    if (identity != null)
+    {
+        foreach (Claim claim in identity.Claims)
+        {
+            myClaim.claim_type = claim.Type;
+            myClaim.claim_value = claim.Value;
+            //_logger.LogInformation($"{claim.Type} = {claim.Value}");
+        }
+    }
+} */
+
 // ...end authN bits
 
 var app = builder.Build();
@@ -55,3 +72,4 @@ app.UseAuthentication();
 app.MapRazorPages();
 
 app.Run();
+

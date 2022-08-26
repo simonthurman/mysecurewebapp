@@ -6,5 +6,21 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to My Secure Webapp</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>Hello @User.Identity.Name!</p>
+    }
+    else
+    {
+        <p>Please <a asp-controller="Account" asp-action="Login">sign in</a>.</p>
+    }
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p>Hello @User.Identity.Name!</p>
+        }
+        else
+        {
+            <p>Hello Anonymous!</p>
+        }
+    }
 </div>
