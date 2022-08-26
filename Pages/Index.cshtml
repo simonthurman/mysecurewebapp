@@ -6,22 +6,15 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to My Secure Webapp</h1>
+
     @if (User.Identity.IsAuthenticated)
     {
         <p>Hello @User.Identity.Name!</p>
-        <p>Claims: @User.Claims</p>
+        <p>Claims: </p>
     }
     else
     {
         <p>Please <a asp-controller="Account" asp-action="Login">sign in</a>.</p>
     }
-        @if (User.Identity.IsAuthenticated)
-        {
-            <p>Hello @User.Identity.Name!</p>
-        }
-        else
-        {
-            <p>Hello Anonymous!</p>
-        }
-    }
+
 </div>

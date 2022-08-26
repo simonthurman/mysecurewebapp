@@ -19,14 +19,19 @@ builder.Services.AddRazorPages();
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         .AddMicrosoftIdentityWebApp(myConfig.GetSection("AzureAd"));
 
+builder.Services.AddAuthorization(options =>
+{
+    //options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
+    options.AddPolicy("Country", policy => policy.RequireClaim("ctry"));
+});
 
-builder.Services.AddControllersWithViews(options =>
+/* builder.Services.AddControllersWithViews(options =>
     {
         var policy = new AuthorizationPolicyBuilder()
             .RequireAuthenticatedUser()
             .Build();
         options.Filters.Add(new AuthorizeFilter(policy));
-    });
+    }); */
 builder.Services.AddRazorPages()
         .AddMicrosoftIdentityUI();
 
