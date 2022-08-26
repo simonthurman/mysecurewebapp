@@ -22,7 +22,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization(options =>
 {
     //options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
-    options.AddPolicy("Country", policy => policy.RequireClaim("ctry"));
+    options.AddPolicy("GivenName", policy => policy.RequireClaim("given_name"));
 
 });
 

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 
 
 namespace mysecurewebapp.Pages;
-[Authorize(Policy = "Country")]
+[Authorize(Policy = "GivenName")]
 public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
