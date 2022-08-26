@@ -23,6 +23,7 @@ builder.Services.AddAuthorization(options =>
 {
     //options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
     options.AddPolicy("Country", policy => policy.RequireClaim("ctry"));
+
 });
 
 /* builder.Services.AddControllersWithViews(options =>
@@ -70,9 +71,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
-
 app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.MapRazorPages();
 

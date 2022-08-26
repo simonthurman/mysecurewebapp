@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace mysecurewebapp.Pages;
-
+[Authorize(Policy = "Country")]
 public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
