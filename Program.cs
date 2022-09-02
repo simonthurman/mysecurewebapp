@@ -29,9 +29,9 @@ builder.Services.AddRazorPages().AddMvcOptions(options =>
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("GivenName", policy =>
+    options.AddPolicy("Email", policy =>
     {
-        policy.RequireClaim("given_name");
+        policy.RequireClaim("email");
     });
 }
 );
