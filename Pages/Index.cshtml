@@ -10,7 +10,7 @@
     @if (User.Identity.IsAuthenticated)
     {
         <p>Hello @User.Identity.Name!</p>
-        <p>Claims: </p>
+        <p>Claims: @Model.forename</p>
     }
     else
     {
