@@ -16,25 +16,26 @@ builder.Services.AddRazorPages();
 
 //Add AuthN bits...
 
-builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-        .AddMicrosoftIdentityWebApp(myConfig.GetSection("AzureAd"));
+builder.Services.AddMicrosoftIdentityWebAppAuthentication(myConfig,"AzureAd");
+
+builder.Services.AddRazorPages().AddMvcOptions(options =>
+{
+    var policy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+    options.Filters.Add(new AuthorizeFilter(policy));
+}
+).AddMicrosoftIdentityUI();
 
 builder.Services.AddAuthorization(options =>
 {
-    //options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
-    options.AddPolicy("GivenName", policy => policy.RequireClaim("given_name"));
-
-});
-
-/* builder.Services.AddControllersWithViews(options =>
+    options.AddPolicy("GivenName", policy =>
     {
-        var policy = new AuthorizationPolicyBuilder()
-            .RequireAuthenticatedUser()
-            .Build();
-        options.Filters.Add(new AuthorizeFilter(policy));
-    }); */
-builder.Services.AddRazorPages()
-        .AddMicrosoftIdentityUI();
+        policy.RequireClaim("given_name");
+    });
+}
+);
+
 
 /* ClaimToken myClaim = new ClaimToken();
 
